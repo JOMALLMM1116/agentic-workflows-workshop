@@ -3,7 +3,9 @@ name: Daily Digest
 on:
   schedule: daily on weekdays
   workflow_dispatch:
-engine: gemini
+engine:
+  id: gemini
+  version: 0.43.0
 permissions:
   contents: read
   issues: read
