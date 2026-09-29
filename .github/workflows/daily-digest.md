@@ -4,12 +4,16 @@ on:
   schedule: daily on weekdays
   workflow_dispatch:
 engine:
-  id: gemini
-  version: 0.43.0
+  id: copilot
+  model: gpt-4.1
 permissions:
   contents: read
   issues: read
   pull-requests: read
+  copilot-requests: write
+tools:
+  github:
+    toolsets: [issues, pull_requests]
 safe-outputs:
   create-issue:
     max: 1
