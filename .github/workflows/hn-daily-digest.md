@@ -6,6 +6,7 @@ on:
 engine:
   id: copilot
   model: gpt-4.1
+  args: ["--allow-url=hacker-news.firebaseio.com"]
 permissions:
   contents: read
   issues: read
@@ -17,7 +18,7 @@ network:
   blocked: []
 tools:
   web-fetch: {}
-  bash: ["*"]
+  bash: ["curl:*", "jq:*"]
 safe-outputs:
   create-issue:
     max: 1
