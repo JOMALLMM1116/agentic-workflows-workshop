@@ -17,7 +17,7 @@ network:
   blocked: []
 tools:
   web-fetch: {}
-  bash: ["curl:*", "jq:*"]
+  bash: ["*"]
 safe-outputs:
   create-issue:
     max: 1
