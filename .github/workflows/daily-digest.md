@@ -3,16 +3,16 @@ name: Daily Digest
 on:
   schedule: daily on weekdays
   workflow_dispatch:
-engine: copilot
-model: auto
+engine: gemini
 permissions:
   contents: read
   issues: read
   pull-requests: read
-  copilot-requests: write
 safe-outputs:
   create-issue:
     max: 1
+  threat-detection:
+    engine: false
 ---
 
 Create a GitHub issue titled "Daily Digest – <today's date>" summarizing all open issues and open pull requests in this repository.
