@@ -13,9 +13,11 @@ permissions:
 network:
   allowed:
     - hacker-news.firebaseio.com
+  allowed-input: true
+  blocked: []
 tools:
   web-fetch: {}
-  bash: ["curl *"]
+  bash: ["curl:*", "jq:*"]
 safe-outputs:
   create-issue:
     max: 1
@@ -27,10 +29,17 @@ Create a daily digest for professional developers, referencing relevant top Hack
 
 ## How to fetch the data
 
-You have network access to hacker-news.firebaseio.com. Use the `web_fetch` tool to make HTTP GET requests. If `web_fetch` is not available, use `curl` in bash instead. Do not report missing tools before trying both.
+You have network access to hacker-news.firebaseio.com. Use `curl` in bash to make HTTP GET requests.
 
-1. Fetch the list of top story IDs from https://hacker-news.firebaseio.com/v0/topstories.json and keep the first 30 IDs.
-2. For each of those 30 IDs, fetch the story details from https://hacker-news.firebaseio.com/v0/item/<id>.json (replace <id> with the story ID).
+Important rules for bash commands:
+- Run each `curl` command on its own. Do not use pipes (`|`), redirects (`>`), or other commands such as `head`.
+- Read the JSON response directly from the command output.
+- Do not report missing tools before trying `curl` as described here.
+
+Steps:
+
+1. Run `curl -s https://hacker-news.firebaseio.com/v0/topstories.json` and keep the first 30 IDs from the response.
+2. For each of those 30 IDs, run `curl -s https://hacker-news.firebaseio.com/v0/item/<id>.json` (replace <id> with the story ID) to get the story details.
 
 ## What to include
 
